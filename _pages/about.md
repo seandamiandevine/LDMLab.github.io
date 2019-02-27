@@ -7,8 +7,17 @@ redirect_from:
   - /about/
   - /about.html
 ---
+We are the LDM Lab. 
 
-We are a lab.
+The primary goal of our research is to gain a better understanding of the cognitive and neural mechanisms underlying changes in learning and decision-making across the human lifespan. Our current work focuses on three major research questions: 
+
+a) What are the neuro-computational mechanisms underlying learning in uncertain environments and how do these learning processes develop across the human lifespan? 
+
+b) How does the ability to select and arbitrate between different learning strategies change as a function of age? 
+
+c) How do humans learn from the behavior of other individuals and how does this ability change during lifespan development? 
+
+To address these questions we use a multi-methodological approach that combines experimental paradigms, computational modeling and neuroimaging (EEG, fMRI).
 
 A data-driven personal website
 ======
