@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Lifespan Decision-Making Lab"
+title: "Welcome to the Lifespan Decision-Making Lab!"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
