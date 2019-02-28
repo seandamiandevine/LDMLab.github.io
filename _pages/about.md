@@ -3,7 +3,7 @@ permalink: /
 title: "Welcome to the Lifespan Decision-Making Lab!"
 excerpt: "Home"
 author: "LDM Lab"
-author_profile: false
+author_profile: true
 redirect_from: 
   - /about/
   - /about.html
