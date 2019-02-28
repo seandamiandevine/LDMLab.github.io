@@ -2,7 +2,7 @@
 permalink: /
 title: "Welcome to the Lifespan Decision-Making Lab!"
 excerpt: "About me"
-author_profile: true
+author_profile: false
 redirect_from: 
   - /about/
   - /about.html
