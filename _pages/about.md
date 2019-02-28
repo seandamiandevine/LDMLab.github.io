@@ -1,7 +1,8 @@
 ---
 permalink: /
 title: "Welcome to the Lifespan Decision-Making Lab!"
-excerpt: "About me"
+excerpt: "Home"
+author: "LDM Lab"
 author_profile: false
 redirect_from: 
   - /about/
