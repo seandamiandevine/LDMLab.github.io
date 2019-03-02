@@ -85,9 +85,9 @@ author:
   bio              : "Lifespan Decision-Making Lab"
   location         : "7141 Rue Sherbrooke O"
   employer         :
-  googlescholar    : "http://yourfullgooglescholarurl.com"
+  googlescholar    : 
   email            :
-  researchgate     :  https://www.mendeley.com/authors/9044149000/
+  mendely          :  https://www.mendeley.com/authors/9044149000/
   uri              :
   bitbucket        :
   codepen          :
@@ -101,7 +101,7 @@ author:
   instagram        :
   lastfm           :
   linkedin         :
-  orcid            : "http://orcid.org/yourorcidurl"
+  orcid            : 
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
