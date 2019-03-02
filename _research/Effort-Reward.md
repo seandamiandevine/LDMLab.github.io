@@ -1,7 +1,6 @@
 ---
 permalink: /research/Effort-Reward
-title: "Effort-Reward Trade-Off"
-excerpt: "Research"
+excerpt: "Hello World"
 collection: portfolio
 ---
 
