@@ -1,5 +1,5 @@
 ---
-permalink: /research/Effort-Reward
+title: "Effort-Reward Trade-off"
 excerpt: "Hello World"
 collection: portfolio
 ---
