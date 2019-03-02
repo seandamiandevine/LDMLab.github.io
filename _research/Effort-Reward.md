@@ -1,11 +1,6 @@
 ---
 title: "Effort-Reward"
-collection: talks
-type: "Talk"
-permalink: /talks/2012-03-01-talk-1
-venue: "blablabla"
-date: 2012-03-01
-location: "San Francisco, California"
+permalink: /research/Effort-Reward
 ---
 
-This is a description of your talk, which is a markdown files that can be all markdown-ified like any other post. Yay markdown!
+Effort-reward study
