@@ -10,7 +10,7 @@ main:
     url: /team/    
     
   - title: "Join us!"
-    url: /portfolio/
+    url: /join-us/
         
   - title: "Contact us"
     url: /contact-us/
