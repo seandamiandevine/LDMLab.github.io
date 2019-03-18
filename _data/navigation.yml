@@ -3,6 +3,9 @@ main:
   - title: "Research"
     url: /research/  
     
+  - title: "Talks & Conferences"
+    url: /conferences/
+    
   - title: "Publications"
     url: /publications/
 
@@ -15,5 +18,4 @@ main:
   - title: "Contact us"
     url: /contact-us/
     
-  - title: "Talks & Conferences"
-    url: /conferences/
+
