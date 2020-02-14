@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Judge the Colours!</title>
+    <!-- import underscore.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js" type="text/javascript"></script>
+    <script src="jspsych/jspsych.js"></script>
+    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-call-function.js"></script>
+    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
+    <script src="jspsych/plugins/jspsych-survey-text.js"></script>
+    <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  </head>
+  <body></body>
+  <script>
+    document.body.style.background = "#7F7F7F"; //background to grey 
+    var subject_id = jsPsych.randomization.randomID(15); //random 15 digit id
+    var cond = _.sample([0, 1]) // random condition; 0 = stable; 1 = decreasing
+    
+    jsPsych.data.addProperties({ // add random data to file
+	  subject: subject_id,
+	  condition: cond
+	});
+
+    /* setup fullscreen mode */
+    var fs = {
+	type: 'fullscreen',
+  	fullscreen_mode: true
+    }
+
+    /* set constants */
+    var numtrials = 50;
+    var numpractrials = 10;
+    var numblocks = 16;
+    var blocks = _.range(numblocks);
+    var praccolorfreq = .5;
+
+    var postblocktime = 1000;
+    var stimtime = 500;
+    var poststimtime = 500;
+
+    //var cond = 1;
+    if (cond == 0) {
+      var colorfreqs = [.5,.5,.5,.5,.5,.5,.5,.5,.5,.5,.5,.5,.5,.5,.5,.5]
+  } else if (cond == 1) {
+      var colorfreqs = [.5,.5,.5,.5,.4,.28,.14,.06,.06,.06,.06,.06,.06,.06,.06,.06]
+    }
+
+    function stimRandomizer(block,colorfreq,numtrials) {
+      blues = _.range(155, 255);
+      colorsignals = blues.slice(0, 50) ;
+      colornoise = blues.slice(50, 100);
+
+      colorsignals = _.sample(colorsignals, Math.round(numtrials*colorfreq));
+      colornoise = _.sample(colornoise, Math.round(numtrials*(1-colorfreq)));
+      colorstim = _.sample(colorsignals.concat(colornoise), numtrials);
+
+      return colorstim
+    }
+
+    var practicestim = stimRandomizer(1,praccolorfreq,numpractrials)
+    var alltrials = []; // all trials to be used in the task
+    for(i in _.range(numblocks)){
+      alltrials.push(stimRandomizer(blocks[i], colorfreqs[i], numtrials))
+    }
+
+
+     /* define demo questions trials */
+      var demo = {
+	  type: 'survey-text',
+	  questions: [
+	    {prompt: "How old are you?", name:'age'}, 
+	    {prompt: "What is your sex?", placeholder: "Male, Female, Other, Prefer Not to Say, etc.", name:'sex'}
+	  ],
+	};
+
+    /* define instructions trials */
+    var i1 = {
+      type: "html-keyboard-response",
+      stimulus: "<p>Welcome to this task! We are interested in studying how people perceive and identify colors.</p>"+
+		"<p> Press SPACE to continue.</p>", 
+      choices: ['space'], 
+      post_trial_gap: poststimtime
+    };
+
+    var i2 = {
+      type: "html-keyboard-response",
+      stimulus: "<p>In this task, you will see a series of colored dots. </p>" +
+		"<p>The dots will be presented on the screen one at a time. </p>" +
+		"<p>Your tasks in this study will be to identify <strong>blue</strong> dots.</p>" +
+		"<p>Press SPACE to continue</p>", 
+      choices: ['space'],
+      post_trial_gap: poststimtime
+    };
+
+    var i3 = {
+      type: "html-keyboard-response",
+      stimulus: "<p>When you see a blue dot on the screen, press the 'A' key.</p>"+
+		"<p>For all other dots, press the 'L' key. </p>"+
+		"<p>Press SPACE to continue</p>", 
+      choices: ['space'],
+      post_trial_gap: poststimtime
+    };
+
+    var i4 = {
+      type: "html-keyboard-response",
+      stimulus: "<p>The dots will be presented in series with breaks in between. </p>"+
+		"<p>This means that you will see a series of dots, have a short break, and then another series of dots, until you have seen <strong>16 series.</strong></p>" +
+		"<p>Press SPACE to continue</p>", 
+      choices: ['space'],
+      post_trial_gap: poststimtime
+    };
+
+    var i5 = {
+      type: "html-keyboard-response",
+      stimulus: "<p>Some of the series you see may have a lot of blue dots, and others may have only a few.</p>" +
+		"<p>There is nothing for you to keep track of. </p>"+
+		"<p>Press SPACE to continue</p>", 
+      choices: ['space'],
+      post_trial_gap: poststimtime
+    };
+
+    var i6 = {
+      type: "html-keyboard-response",
+      stimulus: "<p>Please respond <strong>after</strong> you see each dot. A <strong>?</strong> will appear when it is time to answer. </p>" + 
+		"<p>You should do your best to answer quickly and accurately during the study. However, if you make a mistake and hit the wrong button at any point, don't worry -- just keep going.</p>"+
+		"<p>Press SPACE to continue</p>", 
+      choices: ['space'],
+      post_trial_gap: poststimtime
+    };
+
+    var i7 = {
+      type: "html-keyboard-response",
+      stimulus: "<p>Now you will complete a brief practice block to learn how the task works.</p>"+
+		"<p>Press SPACE when you're ready to start!</p>", 
+      choices: ['space'],
+      post_trial_gap: poststimtime
+    };
+
+    var i8 = {
+      type: "html-keyboard-response",
+      stimulus: "<p>You have now completed the practice series.</p>"+
+		"<p>If you have any questions, please reload this page and read the instructions again.</p>"+
+		"<p>Otherwise, you're ready to begin the study.</p>"+
+		"<p>Press SPACE when you're ready to start!</p>", 
+      choices: ['space'],
+      post_trial_gap: poststimtime
+    };
+
+/* define practice trials */
+  var pCount = 0; 
+  var pstim = {
+    type: "image-keyboard-response",
+    stimulus: function(){
+      stim = 'stim/'+practicestim[pCount]+'.png';
+      pCount = pCount + 1;
+      return stim
+    },
+    trial_duration: stimtime
+  }
+    /* define test trials */
+  var blockCount = 0;
+  var trialCount = 0;
+
+  var block = {
+    type: 'html-keyboard-response',
+    stimulus: function(){
+      text = "<p>You've finished Block "+(blockCount+1)+"</p><p>Press SPACE to continue.</p>";
+      blockCount = blockCount + 1;
+      trialCount = 0; // reset trials back down to zero
+
+      return text
+    },
+    choices: ['space'],
+  }
+
+  var stim = {
+    type: "image-keyboard-response",
+    stimulus: function(){
+      stim = 'stim/'+alltrials[blockCount][trialCount]+'.png';
+      trialCount = trialCount + 1;
+      return stim
+    },
+    trial_duration: stimtime
+  };
+
+  var fixation = {
+    type: 'html-keyboard-response',
+    stimulus: '<div style="font-size:60px;">?</div>',
+    choices: ['a', 'l'],
+  }
+
+  var iti = {
+    type: 'html-keyboard-response',
+    stimulus: '',
+    trial_duration: poststimtime
+  }
+
+  var ptrials = {
+    timeline: [pstim, fixation, iti],
+    repetitions: numpractrials,
+  }
+
+  var trials = {
+    timeline: [stim, fixation, iti],
+    repetitions: numtrials,
+  }
+
+  var timeline = [fs, demo, i1, i2, i3, i4, i5, i6, i7, ptrials, i8]
+  for (i in _.range(numblocks)){
+    timeline.push(trials);
+    timeline.push(block);
+  }
+
+    jsPsych.init({
+      timeline: timeline,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+  </script>
+</html>
